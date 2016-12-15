@@ -1,0 +1,48 @@
+<div>
+
+	<div id="new_order">
+		<p>Customer </p>
+		<select ng-model="order._customer" ng-options="customer.name for customer in customers">
+			<option value="">Select Customer</option>
+		</select>
+		<p>Order: </p>
+		<select ng-options="item.item for item in items" ng-model="order._product" ng-change="updatemax()">
+			<option value="">Select Product</option>
+		</select>
+
+		<p ng-if="q_limit">Quatity: </p>
+		<p ng-if="q_limit">({{q_limit}} Left)</p>
+		<input ng-if="order._product" type="number" ng-model="order.quantity" min="1" max="q_limit">
+		<p ng-bind="errmsg"></p>
+		<br>
+		<input type="submit" value="Submit Order" ng-click="add_order()">
+
+
+	</div><br><hr>
+
+	<input type="text" ng-model="order_filter" placeholder="filter order...">
+	<table>
+		<thead>
+			<th>Customer Name</th>
+			<th>Product</th>
+			<th>Quantity</th>
+			<th>Date</th>
+		</thead>
+		<tbody>
+			<tr ng-repeat="order in orders">
+				<td ng-bind="order._customer.name"></td>
+				<td ng-bind="order._product.item"></td>
+				<td ng-bind="order.quantity"></td>
+				<td>{{order.created_at | date: 'MM/dd/yyyy'}}</td>
+
+			</tr>
+
+		</tbody>
+
+
+	</table>
+
+
+
+
+</div>

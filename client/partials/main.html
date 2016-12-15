@@ -1,0 +1,33 @@
+<div>
+
+	<div>
+		<input type="text" name="search" placeholder="search item" ng-model="search">
+		<button ng-click="searchit">Search</button>
+
+	</div>
+	<div id="item_list">
+		<h3>Items</h3>
+
+		<div ng-repeat="item in items | limitTo: showitem">
+			<p ng-bind="item.item"></p>
+			<p>({{item.amount}} left)</p>
+
+		</div>
+
+		<a href="" ng-click="moreitem()">show more...</a>
+	</div>
+
+	<div id="recent_order">
+		<h3>Recent Orders</h3>
+		<p ng-repeat="order in orders | limitTo: showorder">{{order._customer.name}} ordered {{order.quantity}} {{order._product.item}} on {{order.created_at | date: 'MM/dd/yyyy'}}</p>
+
+		<a href="" ng-click="moreorder()">show more...</a>
+	</div>
+
+	<div id="new_customers">
+		<h3>New Customers</h3>
+			<p ng-repeat="customer in customers | limitTo: showcust">{{customer.name}} joined on {{customer.created_at | date: 'MM/dd/yyyy'}}</p>
+		<a href="" ng-click="morecust()">show more...</a>
+	</div>
+
+</div>
